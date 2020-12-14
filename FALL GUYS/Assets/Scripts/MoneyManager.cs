@@ -5,18 +5,22 @@ using TMPro;
 
 public class MoneyManager : MonoBehaviour
 {
-
     public static MoneyManager instance;
-    public int monedas = 0;
-    public int coronas = 0;
-    public TextMeshProUGUI textoMonedas;
-    public TextMeshProUGUI textoCoronas;
-    void Awake()
+
+    public int monedas;
+    public int coronas;
+    public TextMeshProUGUI textLabelCoins;
+    public TextMeshProUGUI textLabelCoronas;
+    public GameObject popupError;
+    public GameObject popupConfirmacion;
+
+    void awake()
     {
         if (MoneyManager.instance == null)
         {
             MoneyManager.instance = this;
         }
+
         else
         {
             Destroy(this);
@@ -26,19 +30,55 @@ public class MoneyManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         monedas += amount;
-        textoMonedas.text = monedas.ToString();
-        textoCoronas.text = coronas.ToString();
+        UpdateLabelMonedas();
+    }
+
+    public void AddCoronas(int amount)
+    {
+        coronas += amount;
+        UpdateLabelCoronas();
     }
 
     public void ConsumeCoins(int amount)
     {
-        if(monedas>=amount)
-        {
-            AddCoins -= amount;
-        }
 
-        else
+        if (monedas >= amount)
+        {
+            monedas -= amount;
+            UpdateLabelMonedas();
+        }
     }
 
+    public void ConsumeCoronas(int amount)
+    {
+        if (coronas >= amount)
+        {
+            coronas -= amount;
+            UpdateLabelCoronas();
+        }
+    }
 
+    public void UpdateLabelMonedas()
+    {
+        textLabelCoins.text = monedas.ToString();
+    }
+
+    public void UpdateLabelCoronas()
+    {
+        textLabelCoronas.text = coronas.ToString();
+    }
+
+    public void CheckMoney(int amount)
+    {
+
+        if(amount <= monedas)
+        {
+            popupConfirmacion.SetActive(true);
+        }
+        else
+        {
+            popupError.SetActive(true);
+        }
+
+    }
 }
