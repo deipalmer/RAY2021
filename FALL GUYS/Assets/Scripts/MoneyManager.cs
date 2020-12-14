@@ -9,6 +9,7 @@ public class MoneyManager : MonoBehaviour
 
     public int monedas;
     public int coronas;
+    public GameObject boton;
     public TextMeshProUGUI textLabelCoins;
     public TextMeshProUGUI textLabelCoronas;
     public GameObject popupError;
@@ -72,6 +73,19 @@ public class MoneyManager : MonoBehaviour
     {
 
         if(amount <= monedas)
+        {
+            popupConfirmacion.SetActive(true);
+        }
+        else
+        {
+            popupError.SetActive(true);
+        }
+
+    }
+    public void CheckCoronas(int amount)
+    {
+
+        if (amount <= coronas)
         {
             popupConfirmacion.SetActive(true);
         }
