@@ -18,7 +18,7 @@ public class GetInfo : MonoBehaviour
 
 
 
-    void Awake()
+    void Start()
     {
         StartCoroutine(GetText());
     }
@@ -49,6 +49,7 @@ public class GetInfo : MonoBehaviour
             usuario.text = data["nick"];
             nivel.text = data["level"];
             nmonedas.text = data["coins"];
+            MoneyManager.instance.AddCoins(data["coins"]);
             ncoronas.text = data["crowns"];
             experiencia.text = data["progress"];
             experienciarestante.text = "/" + data["totalAmountForNextLevel"];

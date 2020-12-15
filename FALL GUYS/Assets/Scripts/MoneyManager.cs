@@ -9,13 +9,12 @@ public class MoneyManager : MonoBehaviour
 
     public int monedas;
     public int coronas;
-    public GameObject boton;
     public TextMeshProUGUI textLabelCoins;
     public TextMeshProUGUI textLabelCoronas;
     public GameObject popupError;
     public GameObject popupConfirmacion;
 
-    void awake()
+    void Awake()
     {
         if (MoneyManager.instance == null)
         {
