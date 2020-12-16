@@ -51,6 +51,7 @@ public class GetInfo : MonoBehaviour
             nmonedas.text = data["coins"];
             MoneyManager.instance.AddCoins(data["coins"]);
             ncoronas.text = data["crowns"];
+            MoneyManager.instance.AddCoronas(data["crowns"]);
             experiencia.text = data["progress"];
             experienciarestante.text = "/" + data["totalAmountForNextLevel"];
 
